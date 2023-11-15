@@ -1,0 +1,45 @@
+@startuml
+
+!define RECTANGLE class
+!define ENDRECTANGLE end class
+!define DOWN ---
+
+RECTANGLE Main {
+}
+
+RECTANGLE Controller {
+  +wprowadzenieMacierze(scanner: Scanner)
+  +operacjeArytmetyczne(scanner: Scanner)
+  +transponowanaMacierzA()
+  +transponowanaMacierzB()
+  +transponowanaMacierzC()
+  +mnozenieMacierze()
+  +wyswietlanie(macierz: String, a: int[][])
+}
+
+RECTANGLE Model {
+  +getMacierzA(): int[][]
+  +getMacierzB(): int[][]
+  +getMacierzC(): int[][]
+  +setMacierzA(macierzA: int[][])
+  +setMacierzB(macierzB: int[][])
+  +setMacierzC(macierzC: int[][])
+  +transponowanieMacierz(macierz: int[][]): int[][]
+  +mnozenieMacierze(macierzA: int[][], macierzB: int[][]): int[][]
+}
+
+RECTANGLE View {
+  +wyswietlanie(nazwaM: String, macierz: int[][])
+}
+
+Main --> Controller: wybor
+Controller --> Model: getMacierzA
+Model --> Controller: macierzA
+Controller --> Model: getMacierzB
+Model --> Controller: macierzB
+Controller --> Model: mnozenieMacierze(macierzA, macierzB)
+Model --> Controller: macierzC
+Controller --> Model: setMacierzC(macierzC)
+Controller --> View: wyswietlanie("Macierz A i B są pomnożone", macierzC)
+
+@enduml
